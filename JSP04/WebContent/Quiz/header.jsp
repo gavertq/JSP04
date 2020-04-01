@@ -18,7 +18,22 @@ ul li{display:inline; margin-right:50px; margin-bottom: 10px;}
 
 <div>
 	<header>CARE &nbsp; LAB</header>
-	<hr><nav><ul><li><a>Home</a></li><li><a>회원 정보</a></li><li><a>로그인</a></li></ul></nav>
+	<hr>
+		<nav>
+			<ul>
+				<li><a href="main.jsp">Home</a>
+				</li><li><a>회원 정보</a></li>
+				<%try{
+					if(session.getAttribute("loginSuccess").equals("Yes")){%>
+					<li><a href="logout.jsp">로그아웃</a></li>
+				<%}else{%>					
+					<li><a href="login.jsp">로그인</a></li>
+				<%}}catch(Exception e){%>
+					<li><a href="login.jsp">로그인</a></li>
+				<%}%>
+				
+			</ul>
+		</nav>
 	<hr>
 </div>
 

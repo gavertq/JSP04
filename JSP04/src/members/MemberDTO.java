@@ -1,11 +1,11 @@
 package members;
 
 public class MemberDTO {
-	private String id;
-	private String pwd;
-	private String name;
-	private String addr;
-	private String tel;
+	private static String id;
+	private static String pwd;
+	private static String name;
+	private static String addr;
+	private static String tel;
 	
 	public String getId() {return id;}
 	public void setId(String id) {this.id = id;}
