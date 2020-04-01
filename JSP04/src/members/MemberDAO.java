@@ -70,7 +70,7 @@ public class MemberDAO {
 	}
 	
 	public ArrayList<MemberDTO> memberDetailView(String uName) {
-		String sql = "select * from Members where id=?";
+		String sql = "select * from Members where name=?";
 		ArrayList<MemberDTO> members = new ArrayList<MemberDTO>();
 		
 		try {

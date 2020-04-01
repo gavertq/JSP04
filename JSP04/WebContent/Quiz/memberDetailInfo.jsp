@@ -7,11 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style type="text/css">
+.div_memberDetail{text-align: center; align-items: center;}
+</style>
+
 </head>
 <body>
 
 <jsp:useBean id="dao" class="members.MemberDAO"/>
-
+	<%@include file="header.jsp" %>
+	<div>
 	<%
 	String name = request.getParameter("name");
 	ArrayList<MemberDTO> list = dao.memberDetailView(name);
@@ -25,6 +31,7 @@
 		}
 	}else{out.print("데이터 없음");}
 	%>
-
+	</div>
+	<%@include file="footer.jsp" %>
 </body>
 </html>
