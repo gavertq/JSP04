@@ -22,7 +22,7 @@ ul li{display:inline; margin-right:50px; margin-bottom: 10px;}
 		<nav>
 			<ul>
 				<li><a href="main.jsp">Home</a>
-				</li><li><a>회원 정보</a></li>
+				</li><li><a href="memberInfo.jsp">회원 정보</a></li>
 				<%try{
 					if(session.getAttribute("loginSuccess").equals("Yes")){%>
 					<li><a href="logout.jsp">로그아웃</a></li>

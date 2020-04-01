@@ -68,4 +68,28 @@ public class MemberDAO {
 		}
 		
 	}
+	
+	public ArrayList<MemberDTO> memberDetailView(String uName) {
+		String sql = "select * from Members where id=?";
+		ArrayList<MemberDTO> members = new ArrayList<MemberDTO>();
+		
+		try {
+			con = DriverManager.getConnection(url, id, pwd);
+			ps = con.prepareStatement(sql);
+			ps.setString(1, uName);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				MemberDTO m = new MemberDTO();
+				m.setId(rs.getString("id"));
+				m.setPwd(rs.getString("pwd"));
+				m.setName(rs.getString("name"));
+				m.setAddr(rs.getString("addr"));
+				m.setTel(rs.getString("tel"));
+				members.add(m);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	return members;
+	}
 }
