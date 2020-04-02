@@ -24,11 +24,13 @@ table{margin: 0 auto;}
 		if(listM.size() != 0){
 			for(MemberDTO mM : listM){%>
 			<jsp:useBean id="dto" class="members.MemberDTO"/>
-			<jsp:setProperty property="*" name="dto"/>
+			<jsp:setProperty property="name" name="dto"/>
+			<jsp:setProperty property="addr" name="dto"/>
+			<jsp:setProperty property="tel" name="dto"/>
 			
 		<div class="div_memberDetail">
 				
-		<form action="modify_Success.jsp">
+		<form action="modify_Success.jsp?id='<%=uMId%>'">
 		<table>
 			<tr><th>이 름</th><td><input type="text" value="<%=mM.getName() %>" name="name"></td></tr>
 			<tr><th>주 소</th><td><input type="text" value="<%=mM.getAddr() %>" name="addr"></td></tr>
@@ -36,7 +38,7 @@ table{margin: 0 auto;}
 		<%}%>		
 		</table>
 		<input type="submit" value="완료">
-		<button type="button" onclick="location.href='memberDetailInfo.jsp'">취소</button>
+		<button type="button" onclick="javascript:history.back();">취소</button>
 		</form>		
 		</div>
 		

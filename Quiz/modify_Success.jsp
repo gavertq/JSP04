@@ -13,9 +13,11 @@
 
 <jsp:useBean id="dao" class="members.MemberDAO"/>
 <jsp:useBean id="dto" class="members.MemberDTO"/>
-<jsp:setProperty property="*" name="dto"/>
+<jsp:setProperty property="name" name="dto"/>
+<jsp:setProperty property="addr" name="dto"/>
+<jsp:setProperty property="tel" name="dto"/>
 	<%
-	String MId = request.getParameter("Mid");
+	String MId = request.getParameter("id");
 	boolean resultModi = dao.memberModi(dto, MId);
 	if(resultModi==true){%>
 		<script>

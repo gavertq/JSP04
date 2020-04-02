@@ -18,8 +18,7 @@ table{margin: 0 auto;}
 <body>
 
 <jsp:useBean id="dao" class="members.MemberDAO"/>
-<jsp:useBean id="dto" class="members.MemberDTO"/>
-<jsp:setProperty property="*" name="dto"/>
+
 	<%@include file="header.jsp" %>
 	<div class="div_memberDetail">
 	<%
