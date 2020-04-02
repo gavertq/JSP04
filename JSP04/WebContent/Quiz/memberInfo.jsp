@@ -16,22 +16,25 @@
 <body>
 
 <jsp:useBean id="dao" class="members.MemberDAO"/>
+
 	<%@include file="header.jsp" %>
 	<%
 	try{
 	if(session.getAttribute("loginSuccess").equals("Yes")){
-		ArrayList<MemberDTO> list = dao.memberView();
-		if(list.size() != 0){%>
+		ArrayList<MemberDTO> listMember = dao.memberView();
+		if(listMember.size() != 0){%>
+		
 		<div style="text-align: center; align-items: center;">
 		<h3>회원 목록</h3>
-		<table class="table_memberInfo"><tr><th>이름</th><th>주소</th><th>전화번호</th></tr>
-		<%for(MemberDTO m : list){%>
+		<table class="table_memberInfo" border="1"><tr><th>이름</th><th>주소</th><th>전화번호</th></tr>
+		
+		<%for(MemberDTO m : listMember){%>
 			<tr>
-			<td><a href="memberDetailInfo.jsp?name=<%=m.getName() %>"><%=m.getName() %></a></td>
+			<td><a href="memberDetailInfo.jsp?id=<%=m.getId()%>"><%=m.getName() %></a></td>
 			<td><%=m.getAddr() %></td>
 			<td><%=m.getTel() %></td>
 			</tr>
-			<%}%>
+		<%}%>
 		</table>
 		<%}else{out.print("데이터 없음");}
 	}else{%>

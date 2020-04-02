@@ -9,6 +9,7 @@
 <style type="text/css">
 .div_login{height: 150px; margin: 0 auto;}
 .form_login {float: right; margin-right: 10%;}
+.a_Login{color:black; text-decoration:none; margin-right: 150px;}
 </style>
 
 </head>
@@ -28,10 +29,8 @@
 			<tr>
 				<td><input type="text" name="pwdLogin" placeholder="비밀번호"><br></td>
 			</tr>
-		</table>
-			
-			
-			<a href="register.jsp">회원 가입</a>
+		</table>						
+			<a class="a_Login" href="register.jsp">회원 가입</a>
 		</form>
 </div>
 
