@@ -10,20 +10,17 @@
 </head>
 <body>
 <jsp:useBean id="dao" class="members.MemberDAO"/>
-
 <%
 String uid = request.getParameter("idLogin");
 String uPwd = request.getParameter("pwdLogin");
+System.out.print(uid);
+int result = dao.memberLogin(uid,uPwd);
 
-boolean result = dao.memberLogin(uid);
-
-if(result==true){
-	MemberDTO m = new MemberDTO();
-	if(uPwd.equals(m.getPwd())){
+if(result==0){
 		out.print("<script>location.href=\'successLogin.jsp\'</script>");
 		session.setAttribute("loginSuccess", "Yes");
-	}else{out.print("<script>alert(\"비밀번호가 일치하지 않습니다.\"); location.href=\'login.jsp\'</script>");}	
-	
+}else if(result == 1){
+	out.print("<script>alert(\"비밀번호가 일치하지 않습니다.\"); location.href=\'login.jsp\'</script>");
 }else{
 	out.print("<script>alert(\"등록되지 않은 아이디 입니다.\"); location.href=\'login.jsp\'</script>");
 }

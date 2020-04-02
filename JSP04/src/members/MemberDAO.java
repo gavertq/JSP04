@@ -26,19 +26,19 @@ public class MemberDAO {
 		}
 	}
 	
-	public boolean memberIn() {
+	public boolean memberIn(MemberDTO dto) {
 		String sql = "INSERT INTO MEMBERS VALUES(?, ?, ?, ?, ?)";
 		//ArrayList<MemberDTO> members = new ArrayList<MemberDTO>();
 		try {
-			MemberDTO m = new MemberDTO();	
+			//MemberDTO m = new MemberDTO();	
 			con = DriverManager.getConnection(url, id, pwd);
 			ps = con.prepareStatement(sql);		
 					
-			ps.setString(1, m.getId());
-			ps.setString(2, m.getPwd());
-			ps.setString(3, m.getName());
-			ps.setString(4, m.getAddr());
-			ps.setString(5, m.getTel());						
+			ps.setString(1, dto.getId());
+			ps.setString(2, dto.getPwd());
+			ps.setString(3, dto.getName());
+			ps.setString(4, dto.getAddr());
+			ps.setString(5, dto.getTel());						
 			ps.executeUpdate();
 
 			return true;
@@ -64,13 +64,13 @@ public class MemberDAO {
 				m.setTel(rs.getString("tel"));
 				members.add(m);
 			}
-			
 		} catch (SQLException e) {
-			e.printStackTrace();
-		}	return members;
+			e.printStackTrace(); 
+		}	
+		return members;
 	}
 
-	public boolean memberLogin(String uid) {
+	public int memberLogin(String uid,String uPwd) {
 		String sql = "select pwd from Members where id=?";
 		
 		try {
@@ -80,14 +80,17 @@ public class MemberDAO {
 			rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				MemberDTO m = new MemberDTO();
-				m.setPwd(rs.getString("pwd"));
-				return true;
-			}else {return false;}
+				if(rs.getString("pwd").equals(uPwd)) {
+					return 0;
+				}else {
+					return 1;
+				}
+				
+			}else {return -1;}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
+			return -1;
 		}
 		
 	}

@@ -1,3 +1,4 @@
+<%@page import="oracle.net.aso.d"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="members.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,39 +13,30 @@
 <body>
 
 <jsp:useBean id="dao" class="members.MemberDAO"/>
+<jsp:useBean id="dto" class="members.MemberDTO"/>
+<jsp:setProperty property="*" name="dto"/>
 <%
 int flag = 0;
-String idIN = request.getParameter("idIn");
-String pwdIN = request.getParameter("pwdIn");
-String nameIN = request.getParameter("nameIn");
-if(idIN.isEmpty()){
+if(dto.getId()==null){
 	flag=1;%>
 	<script>
 	alert("아이디 입력은 필수입니다!");
 	location.href='register.jsp';
 	</script>
-<%}else if(pwdIN.isEmpty()){
-	flag=1;%>
+	<%}else if(dto.getPwd()==null) { flag=1;%>
 	<script>
 	alert("비밀번호 입력은 필수입니다!");
 	location.href='register.jsp';
 	</script>
-<%}else if(nameIN.isEmpty()){
+<%}else if(dto.getName()==null){
 	flag=1;%>
 	<script>
 	alert("이름 입력은 필수입니다!");
 	location.href='register.jsp';
 	</script>
 <%}
-	if(flag==0){
-		MemberDTO mIn = new MemberDTO();
-		mIn.setId(idIN);
-		mIn.setPwd(pwdIN);
-		mIn.setName(nameIN);
-		mIn.setAddr(request.getParameter("addrIn"));
-		mIn.setTel(request.getParameter("telIn"));
-		
-		boolean alOut = dao.memberIn();
+	if(flag==0){		
+		boolean alOut = dao.memberIn(dto);
 		
 		if(alOut==true){%>
 			<script type="text/javascript">
